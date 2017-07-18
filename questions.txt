@@ -1,0 +1,35 @@
+1. What’s stdint.h?
+    stdint.h is a header file that holds sets of integer types who have specific widths and have defined macros. It also holds macros that specify minimum and maximum values of said sets of integer types.
+
+2. What’s the point of using uint8_t, uint32_t, int32_t, and uint16_t in a program?
+    It allows the program to create new data types based on the primitive C/C++ data types, which can be mapped to the data types used by Microsoft or other computer architectures. 
+
+3. How many bytes is a BYTE, a DWORD, a LONG, and a WORD, respectively?
+    1, 4, 4, 2
+
+4. What (in ASCII, decimal, or hexadecimal) must the first two bytes of any BMP file be? Leading bytes used to identify file formats (with high probability) are generally called "magic numbers."
+    0x42 0x4D
+
+5. What’s the difference between bfSize and biSize?
+    bfSize is the size of a file that contains a device independent bitmap. biSize is the size of the structure BITMAPINFOHEADER which holds info about the dimensions and color format of the device independent bitmap.
+
+6. What does it mean if biHeight is negative?
+    This means that the bitmap is "drawn" top-down, with the first pixel in the upper left hand corner.
+
+7. What field in BITMAPINFOHEADER specifies the BMP’s color depth (i.e., bits per pixel)?
+    biBitCount
+
+8. Why might fopen return NULL in lines 24 and 32 of copy.c?
+    The program may not have permissions to open the file, the file may not exist, or the heap may be out of space and unable to facilitate additional space for a file object. 
+
+9. Why is the third argument to fread always 1 in our code?
+    The third argument is nmemb, which stands for number of members or number of elements to be read from the given stream (4th argument).
+
+10. What value does line 65 of copy.c assign to padding if bi.biWidth is 3?
+    3
+
+11. What does fseek do?
+    Sets the file position to a given byte according to the 'offset' argument passed to it.
+
+12. What is SEEK_CUR?
+    A constant value representing the current file position. It is used as a marker from which the offset value is to be counted from.
