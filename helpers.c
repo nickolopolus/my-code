@@ -84,11 +84,8 @@ void sort(int values[], int n)
                         values[j] = i;
                         j++;
                     }
-
                 }
             }
         }
-
     }
-
 }
