@@ -8,6 +8,8 @@
 
 #include "helpers.h"
 
+#define MAX_ARRAY_VALUE 65536
+
 /**
  * Returns true if value is in array of n values, else false.
  */
@@ -44,19 +46,27 @@ bool search(int value, int values[], int n)
 
 /**
  * Sorts array of n values.
+ * 
+ * O(m + n + (mk))
+ * 
+ * m = number equal to max possible value in unsorted array
+ * n = total number of elements in unsorted array
+ * k = instances of each unique value in unsorted array
+ * 
+ * TODO: Create a map and get rid of the huge array. Should reduce to O(n + kd)
  */
 void sort(int values[], int n)
 {
     if(n > 1){
 
-        int sortedCount[65536] = {0};
+        int sortedCount[MAX_ARRAY_VALUE] = {0}; // TODO: change to map
 
-        for(int i = 0; i < n; i++)
+        for(int i = 0; i < n; i++) // n 
         {
             sortedCount[values[i]]++;
         }
 
-        for(int i = 0, j = 0; i < 65536; i++)
+        for(int i = 0, j = 0; i < MAX_ARRAY_VALUE; i++) // k (total number of unique values if using map)
         {
             int indexCount = sortedCount[i];
 
@@ -69,7 +79,7 @@ void sort(int values[], int n)
 
                 } else {
 
-                    for(int k = 0; k < indexCount; k++)
+                    for(int k = 0; k < indexCount; k++) // d (count per unique value)
                     {
                         values[j] = i;
                         j++;
