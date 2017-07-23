@@ -1,0 +1,30 @@
+0. What is pneumonoultramicroscopicsilicovolcanoconiosis?
+	
+	a pneumoconiosis caused by inhalation of very fine silicate or quartz dust
+
+1. According to its man page, what does getrusage do?
+	
+	returns resource usage measures for the calling process, children of the calling process, or the calling thread. 
+
+2. Per that same man page, how many members are in a variable of type struct rusage?
+	
+	16
+
+3. Why do you think we pass before and after by reference (instead of by value) to calculate, even though we’re not changing their contents?
+
+	because getrusage may change their contents and we want to have these changes
+
+4. Explain as precisely as possible, in a paragraph or more, how main goes about reading words from a file. In other words, convince us that you indeed understand how that function’s for loop works.
+
+	the loop iterates on each character in the file. On each iteration, it checks for a few things: 
+		1. If the character is alphabetical or an apostrophe. If so, add the character to a buffer. Check the index of the buffer, if it is greater than the longest word in the english language, move the file position to the end of the word to prepare for the next word. Otherwise, simply increment the index and move to the next iteration (next character.)
+		2. If the character is numeric. If so, move the file position to the end of the word to prepare for the next word.
+		3. Else a new word has been found because if the character wasn't alphabetic, numeric, an apostrophe, then the program assumes it to be a null byte marking the end of the new word. So, it proceeds to cap the word buffer off with a '\0', increments the word counter, and then passes the word to check() which returns true if the word is spelled correctly/is an actual word. If it returns false, the misspelled word is printed and the misspelled counter is incremented. Note: the check() call is surrounded by getrusage() to track the time used by check(). Lastly, index is set to 0 to prepare for the next word.
+
+5. Why do you think we used fgetc to read each word’s characters one at a time rather than use fscanf with a format string like "%s" to read whole words at a time? Put another way, what problems might arise by relying on fscanf alone?
+
+	the buffer that fscanf() would be printing into would need to be very large. If there was a string that was longer than say, the largest word in the english language, then fscanf() would potentially throw an error if the buffer used wasn't large enough. 
+
+6. Why do you think we declared the parameters for check and load as const (which means "constant")?
+
+	so that however I implement check() and load(), I won't be able to alter the dictionary or words that are passed in.
