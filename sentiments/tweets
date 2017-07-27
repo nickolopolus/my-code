@@ -1,0 +1,39 @@
+#!/usr/bin/env python3
+
+import os
+import sys
+import helpers
+from analyzer import Analyzer
+from termcolor import colored
+
+def main():
+    
+    #verify usage
+    if len(sys.argv) != 2:
+        sys.exit("Usage: ./smile word")
+        
+    #get absolute path to positive/negative word lists 
+    positives = os.path.join(sys.path[0], "positive-words.txt")
+    negatives = os.path.join(sys.path[0], "negative-words.txt")
+    
+    #get tweets
+    tweets = helpers.get_user_timeline(sys.argv[1], count=50)
+    
+    #instantiate Analyzer object
+    analyzer = Analyzer(positives, negatives)
+    
+    #loop through tweets and print them with score in color based on score
+    for tweet in tweets:
+        score = analyzer.analyze(tweet)
+        tweet += " -- Score: " + str(score)
+        if score > 0.0:
+            print(colored(tweet, "green"))
+        elif score < 0.0:
+            print(colored(tweet, "red"))
+        else:
+            print(colored(tweet, "yellow"))
+        print()
+
+if __name__ == "__main__":
+    main()
+    
