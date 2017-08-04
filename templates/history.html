@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Trnsaction History
+{% endblock %}
+
+{% block main %}
+    <table style="width:100%">
+      <tr>
+        <th>Buy/Sell</th>
+        <th>Symbol</th>
+        <th>Share Price</th>
+        <th>Quantity</th>
+        <th>Date/Time</th> 
+      </tr>
+      {% for row in transactions %}
+      <tr>
+        <td>{{ row.buy }}</td>
+        <td>{{ row.symbol }}</td> 
+        <td>{{ row.price }}</td>
+        <td>{{ row.quantity }}</td>
+        <td>{{ row.date_time }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+{% endblock %}

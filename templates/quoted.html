@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Quoted
+{% endblock %}
+
+{% block main %}
+    <table style="width:100%">
+      <tr>
+        <th>Name</th>
+        <th>Symbol</th> 
+        <th>Price</th>
+        <th>Quantity</th> 
+        <th>Total</th>
+      </tr>
+      <tr>
+        <td>{{ name }}</td>
+        <td>{{ symbol }}</td> 
+        <td>{{ price }}</td>
+        <td>{{ quantity }}</td> 
+        <td>{{ total }}</td>
+      </tr>
+    </table>
+    <br>
+     <div class="form-group">
+        <form  method="get" action="{{ url_for('quote') }}">
+            <button class="btn btn-default" name="cancel" type="submit" value="new quote">new quote</button>
+        </form>
+    </div>
+{% endblock %}

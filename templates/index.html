@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Your Stocks
+{% endblock %}
+
+{% block main %}
+    <table style="width:100%">
+      <tr>
+        <th>Name</th>
+        <th>Symbol</th> 
+        <th>Quantity</th>
+        <th>Purchase Price</th> 
+        <th>Starting Value</th>
+        <th>Current Value</th>
+        <th>Gain/Loss</th>
+      </tr>
+      {% for row in rows %}
+      <tr>
+        <td>{{ row.name }}</td>
+        <td>{{ row.symbol }}</td> 
+        <td>{{ row.quantity }}</td>
+        <td>{{ row.purchase_price }}</td> 
+        <td>{{ row.starting_value }}</td>
+        <td>{{ row.current_value }}</td>
+        <td>{{ row.gain_loss }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+    <br>
+    <div class=ownershipsummary>Account Balance: {{ balance }}</div>
+    <div class=ownershipsummary>Total Value: {{ value }}</div>
+    <div class=ownershipsummary>Total Gain/Loss: {{ gainloss }}</div>
+    <br>
+{% endblock %}

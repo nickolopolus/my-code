@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Quote
+{% endblock %}
+
+{% block main %}
+    <form action="{{ url_for('quote') }}" method="post">
+        <fieldset>
+            <div class="form-group">
+                <input autocomplete="on" autofocus class="form-control" name="stock symbol" placeholder="stock symbol" type="text"/>
+            </div>
+            <div class="form-group">
+                <input class="form-control" name="quantity" placeholder="quantity" type="number"/>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-default" type="submit">get quote</button>
+            </div>
+        </fieldset>
+    </form>
+{% endblock %}

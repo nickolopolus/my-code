@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Sell
+{% endblock %}
+
+{% block main %}
+    <table style="width:100%">
+      <tr>
+        <th>Name</th>
+        <th>Symbol</th> 
+        <th>Quantity</th>
+        <th>Purchase Price</th> 
+        <th>Starting Value</th>
+        <th>Current Value</th>
+        <th>Gain/Loss</th>
+      </tr>
+      {% for row in rows %}
+      <tr>
+        <td>{{ row.name }}</td>
+        <td>{{ row.symbol }}</td> 
+        <td>{{ row.quantity }}</td>
+        <td>{{ row.purchase_price }}</td> 
+        <td>{{ row.starting_value }}</td>
+        <td>{{ row.current_value }}</td>
+        <td>{{ row.gain_loss }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+    <br>
+    <form action="{{ url_for('sell') }}" method="post">
+        <fieldset>
+            <div class="form-group">
+                <select class="form-control" name="symbol" placeholder="symbol" type="text">
+                {% for symbol in symbols %}
+                    <option value= "{{ symbol }}">{{ symbol }}</option>
+                {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <select class="form-control" name="purchase price" placeholder="purchase price" type="number">
+                {% for price in prices %}
+                    <option value= "{{ price }}">{{ price }}</option>
+                {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <input class="form-control" name="quantity" placeholder="quantity" type="number"/>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-default" type="submit">sell</button>
+            </div>
+        </fieldset>
+    </form>
+{% endblock %}
